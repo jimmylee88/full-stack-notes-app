@@ -137,3 +137,42 @@ dist
 # Vite logs files
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
+
+# -------------------------
+# RYAN'S GITIGNORE TEMPLATE
+# -------------------------
+
+# Logs
+pnpm-debug.log*
+
+# Build output
+dist/
+
+# OS files
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Linux
+.Trash-*
+.nfs*
+
+# Common system files
+*.swp
+*.swo
+*.tmp
+*.bak
+*.old
+# IDE / Editor settings
+.vscode/
+.idea/
+# Optional cache folders
+.cache/
+.tmp/
