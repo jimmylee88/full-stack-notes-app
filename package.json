@@ -1,0 +1,26 @@
+{
+  "name": "exercise",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "Full stack project using Node.js &amp; Express backend.",
+  "dependencies": {
+    "express": "^4.21.2",
+    "uuidv4": "^6.2.13"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jimmylee88/full-stack-notes-app.git"
+  },
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/jimmylee88/full-stack-notes-app/issues"
+  },
+  "homepage": "https://github.com/jimmylee88/full-stack-notes-app#readme"
+}
