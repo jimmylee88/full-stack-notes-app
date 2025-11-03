@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
       data.forEach((item) => {
         const li = document.createElement("li");
         const itemText = `<p class="noteContent">${item.text}</p>`
-        const deleteBtn = `<button class="delete">❌</button>`;
+        const deleteBtn = `<button class="delete-note" data-id="${item.id}">❌</button>`;
 
         li.innerHTML = itemText + deleteBtn;
         dataList.appendChild(li);
@@ -45,6 +45,40 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+  // Handle clicks within the dataList container
+  dataList.addEventListener('click', (event) => {
+    if (event.target.classList.contains('delete-note')) {
+      const noteId = event.target.dataset.id;
+      const listItem = event.target.closest('li');
+
+      if (noteId && listItem) {
+        handleDelete(noteId, listItem);
+      }
+    }
+  })
+
   // Fetch data on page load
   fetchData();
 });
+
+// Sends the Delete request using fetch
+const handleDelete = async (id, listItemElement) => {
+  try {
+    const response = await fetch(`/data/${id}`, {
+      method: "DELETE",
+      headers: {
+        'Content-Type': 'application/json'
+      }
+      });
+
+      if (response.ok) {
+        listItemElement.remove();
+        console.log(`Note ${id} deleted successfully`);
+      } else {
+        console.error(`Failed to delete note ${id}.`)
+      }
+    } catch (error) {
+      console.error("Error with deleting the note", error);
+    }
+  };
+

@@ -61,12 +61,12 @@ button:hover {
     background: #218838;
 }
 
-.delete {
+.delete-note {
     background-color: #f4f4f4;
     width: fit-content;
 }
 
-.delete:hover {
+.delete-note:hover {
     background-color: #e88f8f;
     width: fit-content;
 }

@@ -68,12 +68,14 @@ app.put("/data/:id", (req, res) => {
 app.delete("/data/:id", (req, res) => {
   const data = readData();
   const index = data.findIndex((item) => item.id === req.params.id);
+
   if (index === -1) {
     return res.status(404).json({ message: "Data not found" });
   }
+  
   data.splice(index, 1);
   writeData(data);
-  res.json({ message: "Data deleted successfully", data: deletedItem[0]});
+  res.json({ success: true, message: `Note ${req.params.id} deleted.`});
 });
 
 // Wildcard route to handle undefined routes
