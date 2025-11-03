@@ -61,9 +61,15 @@ button:hover {
     background: #218838;
 }
 
-.delete-note {
+.delete-note, .edit-note {
     background-color: #f4f4f4;
     width: fit-content;
+    margin: 16px;
+}
+
+.edit-note {
+    position: relative;
+    left: 16px;
 }
 
 .delete-note:hover {

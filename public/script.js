@@ -12,10 +12,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
       data.forEach((item) => {
         const li = document.createElement("li");
-        const itemText = `<p class="noteContent">${item.text}</p>`
-        const deleteBtn = `<button class="delete-note" data-id="${item.id}">❌</button>`;
+        li.setAttribute("data-note-id", item.id);
 
-        li.innerHTML = itemText + deleteBtn;
+        const itemText = `<p class="noteContent" contenteditable="false">${item.text}</p>`;
+        const deleteBtn = `<button class="delete-note" data-id="${item.id}">❌</button>`;
+        const editBtn = `<button class="edit-note" data-id="${item.id}">✏️</button>`;
+
+        li.innerHTML = itemText + editBtn + deleteBtn;
         dataList.appendChild(li);
       });
 
