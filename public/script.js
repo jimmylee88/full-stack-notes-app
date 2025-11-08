@@ -49,15 +49,42 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // Handle clicks within the dataList container
-  dataList.addEventListener('click', (event) => {
+  dataList.addEventListener("click", (event) => {
+    const target = event.target;
+    const listItem = target.closest("li");
+    if (!listItem) return;
+
+    if (target.classList.contains("edit-note")) {
+      const noteContent = listItem.querySelector(".noteContent");
+      const noteId = target.dataset.id;
+
+      if (noteContent.getAttribute("contenteditable") === "false") {
+        noteContent.setAttribute("contenteditable", "true");
+        noteContent.focus()
+        target.textContent = "💾"; // swaps button icon
+      }
+
+      else {
+        noteContent.setAttribute("contenteditable", "false");
+        target.textContent = "✏️";
+
+        const newText = noteContent.textContent.trim();
+
+        if (noteId && newText) {
+          handleUpdate(noteId, newText, listItem);
+        }
+      }
+    }
+
     if (event.target.classList.contains('delete-note')) {
       const noteId = event.target.dataset.id;
-      const listItem = event.target.closest('li');
+      const listItem = event.target.closest("li");
 
       if (noteId && listItem) {
         handleDelete(noteId, listItem);
       }
     }
+
   })
 
   // Fetch data on page load
@@ -85,3 +112,21 @@ const handleDelete = async (id, listItemElement) => {
     }
   };
 
+  const handleUpdate = async (id, newText, listItemElement) => {
+    try {
+      const response = await fetch(`/data/${id}`, {
+        method: "PUT",
+        headers: {"Content-type" : "application/json"},
+        body: JSON.stringify({text: newText})
+      });
+
+      if (response.ok) {
+        console.log(`Note ${id} updated and saved successfully`);
+      } else {
+        console.error("Failed to update note");
+      } 
+      
+    } catch (error) {
+        console.error("Error during update", error);
+      }
+    };
